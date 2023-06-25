@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from .models import Profile
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 # Create your views here.
-
 class addStudents(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminUser]
@@ -23,3 +23,11 @@ class addStudents(APIView):
         return Response({
             'message':'user is not saved'
         })
+class Login(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    def post(self,request,format=None):
+        user=request.user
+        data=Profile.objects.get(pk=user)
+
+        return Response({'msg':'hello'})
