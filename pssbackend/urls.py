@@ -26,5 +26,11 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/addUsers/',views.addStudents.as_view(),name="addStudents"),
-    path('api/login/',views.Login.as_view(),name="login")
+    path('api/profileinfo/',views.ProfileInfo.as_view(),name='profile'),
+    path('api/addattendance/',views.AddAttendance.as_view(),name="attendence"),
+    path('api/getAttendance/',views.GetAttendance.as_view(),name='getAttandence'),
+    path('api/addprofile',views.AddProfile.as_view(),name="addProfile"),
+    path('api/addbtechinfo/',views.AddBtechInfo.as_view(),name='addbtechinfo'),
+    path('api/getbtechinfo/',views.GetBtechInfo.as_view(),name='getbtechinfo'),
+    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
