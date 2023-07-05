@@ -32,5 +32,7 @@ urlpatterns = [
     path('api/addprofile',views.AddProfile.as_view(),name="addProfile"),
     path('api/addbtechinfo/',views.AddBtechInfo.as_view(),name='addbtechinfo'),
     path('api/getbtechinfo/',views.GetBtechInfo.as_view(),name='getbtechinfo'),
+    path('api/adddiplomainfo/',views.AddDiplomaInfo.as_view(),name='adddiplomainfo'),
+    path('api/getdiplomainfo/',views.GetDiplomaInfo.as_view(),name='getdiplomainfo'),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

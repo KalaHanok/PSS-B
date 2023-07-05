@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile,SchoolModel,AttendanceModel,BtechModel
+from .models import Profile,SchoolModel,AttendanceModel,BtechModel,DiplomaModel,FeeModel
 class Profile_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Profile
@@ -16,4 +16,13 @@ class BtechSerializer(serializers.ModelSerializer):
     class Meta:
         model=BtechModel
         fields=('user','yr','sem','subject','marks')
+class DiplomaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=DiplomaModel
+        fields=('user','yr','sem','subject','marks')
+
+class FeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=FeeModel
+        fields=('user','date','particulars','amount')
 

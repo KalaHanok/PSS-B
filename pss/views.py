@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Profile,AttendanceModel,BtechModel
+from .models import Profile,AttendanceModel,BtechModel,DiplomaModel
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework.parsers import JSONParser
 from django.core.serializers import serialize
-from .serializers import Profile_Serializer,AttendanceSerializer,BtechSerializer
+from .serializers import Profile_Serializer,AttendanceSerializer,BtechSerializer,DiplomaSerializer
 from rest_framework.parsers import JSONParser
 from django.core.serializers.json import DjangoJSONEncoder
 import io
@@ -86,4 +86,22 @@ class GetBtechInfo(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request):
         serialize=BtechSerializer(BtechModel.objects.filter(user=request.user.id).order_by('yr','sem'),many=True)
+        return Response(serialize.data)
+class AddDiplomaInfo(APIView):
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAdminUser]
+    def post(self,request,format=None):
+        data=request.data.dict()
+        userid=data['user']
+        data['user']=User.objects.get(username=userid).id
+        serialize_data=DiplomaSerializer(data=data)
+        if serialize_data.is_valid():
+            serialize_data.save()
+            return Response({"msg":'recorded your response successfully'})
+        return Response({'msg':'attendanced is not marked'})
+class GetDiplomaInfo(APIView):
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAuthenticated]
+    def get(self,request):
+        serialize=DiplomaSerializer(DiplomaModel.objects.filter(user=request.user.id).order_by('yr','sem'),many=True)
         return Response(serialize.data)

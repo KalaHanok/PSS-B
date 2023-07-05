@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile,SchoolModel,AttendanceModel,BtechModel
+from .models import Profile,SchoolModel,AttendanceModel,BtechModel,DiplomaModel,FeeModel
 # Register your models here.
 @admin.register(Profile)
 class AdminProfile(admin.ModelAdmin):
@@ -13,3 +13,10 @@ class AdminAttendance(admin.ModelAdmin):
 @admin.register(BtechModel)
 class AdminBtech(admin.ModelAdmin):
     list_display=('user','yr','sem','subject','marks')
+@admin.register(DiplomaModel)
+class AdminBtech(admin.ModelAdmin):
+    list_display=('user','yr','sem','subject','marks')
+
+@admin.register(FeeModel)
+class AdminFee(admin.ModelAdmin):
+    list_display=('user','date','particulars','amount')

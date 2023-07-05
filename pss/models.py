@@ -33,3 +33,17 @@ class AttendanceModel(models.Model):
     studentid=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=False,default=datetime.datetime.now())
     ispresent=models.BooleanField()
+
+class DiplomaModel(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    yr=models.IntegerField()
+    sem=models.IntegerField()
+    subject=models.CharField(max_length=200)
+    marks=models.IntegerField()
+
+class FeeModel(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    date=models.DateTimeField(auto_now_add=False,default=datetime.datetime.now())
+    particulars=models.CharField(max_length=500)
+    amount=models.IntegerField()
+
