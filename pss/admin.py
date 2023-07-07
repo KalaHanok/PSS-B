@@ -19,4 +19,4 @@ class AdminBtech(admin.ModelAdmin):
 
 @admin.register(FeeModel)
 class AdminFee(admin.ModelAdmin):
-    list_display=('user','date','particulars','amount')
+    list_display=('user','date','particulars','amount','recipt')

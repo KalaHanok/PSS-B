@@ -46,4 +46,5 @@ class FeeModel(models.Model):
     date=models.DateTimeField(auto_now_add=False,default=datetime.datetime.now())
     particulars=models.CharField(max_length=500)
     amount=models.IntegerField()
+    recipt=models.ImageField(upload_to=f'recipts/')
 

@@ -24,5 +24,5 @@ class DiplomaSerializer(serializers.ModelSerializer):
 class FeeSerializer(serializers.ModelSerializer):
     class Meta:
         model=FeeModel
-        fields=('user','date','particulars','amount')
+        fields=('user','date','particulars','amount','recipt')
 

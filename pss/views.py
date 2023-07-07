@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Profile,AttendanceModel,BtechModel,DiplomaModel
+from .models import Profile,AttendanceModel,BtechModel,DiplomaModel,FeeModel
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework.parsers import JSONParser
 from django.core.serializers import serialize
-from .serializers import Profile_Serializer,AttendanceSerializer,BtechSerializer,DiplomaSerializer
+from .serializers import Profile_Serializer,AttendanceSerializer,BtechSerializer,DiplomaSerializer,FeeSerializer
 from rest_framework.parsers import JSONParser
 from django.core.serializers.json import DjangoJSONEncoder
 import io
@@ -104,4 +104,23 @@ class GetDiplomaInfo(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request):
         serialize=DiplomaSerializer(DiplomaModel.objects.filter(user=request.user.id).order_by('yr','sem'),many=True)
+        return Response(serialize.data)
+    
+class AddFeeDetails(APIView):
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAdminUser]
+    def post(self,request,format=None):
+        data=request.data.dict()
+        userid=data['user']
+        data['user']=User.objects.get(username=userid).id
+        serialize=FeeSerializer(data=data)
+        if serialize.is_valid():
+            serialize.save()
+            return Response({'msg':'response saved successfully'})
+        return Response({'msg':'response is not saved'})
+class GetFeeDetails(APIView):
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAuthenticated]
+    def get(self,request):
+        serialize=FeeSerializer(FeeModel.objects.filter(user=request.user.id).order_by('date'),many=True)
         return Response(serialize.data)

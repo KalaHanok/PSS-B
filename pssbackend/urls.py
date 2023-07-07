@@ -34,5 +34,6 @@ urlpatterns = [
     path('api/getbtechinfo/',views.GetBtechInfo.as_view(),name='getbtechinfo'),
     path('api/adddiplomainfo/',views.AddDiplomaInfo.as_view(),name='adddiplomainfo'),
     path('api/getdiplomainfo/',views.GetDiplomaInfo.as_view(),name='getdiplomainfo'),
-    
+    path('api/addfeedetails/',views.AddFeeDetails.as_view(),name="addfeedetails"),
+    path('api/getfeedetails/',views.GetFeeDetails.as_view(),name='getfeedetails'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
