@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile,SchoolModel,AttendanceModel,BtechModel,DiplomaModel,FeeModel
+from .models import Profile,SchoolModel,AttendanceModel,BtechModel,DiplomaModel,FeeModel,GroceriesModel
 class Profile_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Profile
@@ -26,3 +26,7 @@ class FeeSerializer(serializers.ModelSerializer):
         model=FeeModel
         fields=('user','date','particulars','amount','recipt')
 
+class GroceriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GroceriesModel
+        fields=('name','stock','unit','stock_added_date')

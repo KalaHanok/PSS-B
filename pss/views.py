@@ -124,3 +124,7 @@ class GetFeeDetails(APIView):
     def get(self,request):
         serialize=FeeSerializer(FeeModel.objects.filter(user=request.user.id).order_by('date'),many=True)
         return Response(serialize.data)
+
+# class AddandUpdateGroceries(APIView):
+#     authentication_classes=[JWTAuthentication]
+#     permission_classes

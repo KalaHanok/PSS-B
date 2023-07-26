@@ -23,7 +23,6 @@ class SchoolModel(models.Model):
     biology=models.IntegerField()
     pass_yr=models.IntegerField()
     ispass=models.BooleanField()
-class BtechModel(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     yr=models.IntegerField()
     sem=models.IntegerField()
@@ -33,7 +32,12 @@ class AttendanceModel(models.Model):
     studentid=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=False,default=datetime.datetime.now())
     ispresent=models.BooleanField()
-
+class BtechModel(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    yr=models.IntegerField()
+    sem=models.IntegerField()
+    subject=models.CharField(max_length=200)
+    marks=models.IntegerField()
 class DiplomaModel(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     yr=models.IntegerField()
@@ -47,4 +51,15 @@ class FeeModel(models.Model):
     particulars=models.CharField(max_length=500)
     amount=models.IntegerField()
     recipt=models.ImageField(upload_to=f'recipts/')
+
+class GroceriesModel(models.Model):
+    name = models.CharField(max_length=200)
+    stock = models.IntegerField()
+    unit = models.CharField(max_length=50)
+    stock_added_date=models.DateTimeField(auto_now_add=False,default=datetime.datetime.now())
+
+
+
+
+
 

@@ -23,17 +23,17 @@ from pss import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/addUsers/',views.addStudents.as_view(),name="addStudents"),
-    path('api/profileinfo/',views.ProfileInfo.as_view(),name='profile'),
-    path('api/addattendance/',views.AddAttendance.as_view(),name="attendence"),
-    path('api/getAttendance/',views.GetAttendance.as_view(),name='getAttandence'),
-    path('api/addprofile',views.AddProfile.as_view(),name="addProfile"),
-    path('api/addbtechinfo/',views.AddBtechInfo.as_view(),name='addbtechinfo'),
-    path('api/getbtechinfo/',views.GetBtechInfo.as_view(),name='getbtechinfo'),
-    path('api/adddiplomainfo/',views.AddDiplomaInfo.as_view(),name='adddiplomainfo'),
-    path('api/getdiplomainfo/',views.GetDiplomaInfo.as_view(),name='getdiplomainfo'),
-    path('api/addfeedetails/',views.AddFeeDetails.as_view(),name="addfeedetails"),
-    path('api/getfeedetails/',views.GetFeeDetails.as_view(),name='getfeedetails'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),#post
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),#post
+    path('api/addUsers/',views.addStudents.as_view(),name="addStudents"),#post
+    path('api/profileinfo/',views.ProfileInfo.as_view(),name='profile'),#put to update and get to get info
+    path('api/addattendance/',views.AddAttendance.as_view(),name="attendence"),#post
+    path('api/getAttendance/',views.GetAttendance.as_view(),name='getAttandence'),#get
+    path('api/addprofile',views.AddProfile.as_view(),name="addProfile"),#post
+    path('api/addbtechinfo/',views.AddBtechInfo.as_view(),name='addbtechinfo'),#post
+    path('api/getbtechinfo/',views.GetBtechInfo.as_view(),name='getbtechinfo'),#get
+    path('api/adddiplomainfo/',views.AddDiplomaInfo.as_view(),name='adddiplomainfo'),#post
+    path('api/getdiplomainfo/',views.GetDiplomaInfo.as_view(),name='getdiplomainfo'),#get
+    path('api/addfeedetails/',views.AddFeeDetails.as_view(),name="addfeedetails"),#post
+    path('api/getfeedetails/',views.GetFeeDetails.as_view(),name='getfeedetails'),#get
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

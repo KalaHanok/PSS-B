@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile,SchoolModel,AttendanceModel,BtechModel,DiplomaModel,FeeModel
+from .models import Profile,SchoolModel,AttendanceModel,BtechModel,DiplomaModel,FeeModel,GroceriesModel
 # Register your models here.
 @admin.register(Profile)
 class AdminProfile(admin.ModelAdmin):
@@ -20,3 +20,6 @@ class AdminBtech(admin.ModelAdmin):
 @admin.register(FeeModel)
 class AdminFee(admin.ModelAdmin):
     list_display=('user','date','particulars','amount','recipt')
+@admin.register(GroceriesModel)
+class AdminGroceries(admin.ModelAdmin):
+    list_display=('name','stock','unit','stock_added_date')
