@@ -34,14 +34,20 @@ class ProfileInfo(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     def put(self,request,format=None):
-        serialized_data=Profile_Serializer(Profile.objects.get(pk=request.user.id),data=request.data,partial=True)
-        if serialized_data.is_valid():
-            serialized_data.save()
-        # print(data)
-        return Response({"msg":"suucess"})
+        try:
+            serialized_data=Profile_Serializer(Profile.objects.get(pk=request.user.id),data=request.data,partial=True)
+            if serialized_data.is_valid():
+                serialized_data.save()
+            # print(data)
+            return Response({"msg":"suucess"})
+        except:
+            return Response({'msg':'something went wrong'})
     def  get(self,request):
-        serialized_data=Profile_Serializer(Profile.objects.get(pk=request.user))
-        return Response(serialized_data.data)  
+        try:
+            serialized_data=Profile_Serializer(Profile.objects.get(pk=request.user))
+            return Response(serialized_data.data)  
+        except:
+            return Response({'msg':'something went wrong'})  
 class AddProfile(APIView):
     authentication_classes=[JWTAuthentication]
     permission_classes=[IsAdminUser]

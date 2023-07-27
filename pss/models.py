@@ -11,6 +11,8 @@ class Profile(models.Model):
     profile_pic=models.ImageField(upload_to='profilepic/',blank=True,null=True)
     phone_num=models.IntegerField(blank=True,null=True)
     address=models.CharField(max_length=1000,blank=True,null=True)
+    father_name=models.CharField(max_length=200,blank=True,null=True)
+    mother_name=models.CharField(max_length=200,blank=True,null=True)
 class SchoolModel(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     study=models.IntegerField()
@@ -23,11 +25,6 @@ class SchoolModel(models.Model):
     biology=models.IntegerField()
     pass_yr=models.IntegerField()
     ispass=models.BooleanField()
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
-    yr=models.IntegerField()
-    sem=models.IntegerField()
-    subject=models.CharField(max_length=200)
-    marks=models.IntegerField()
 class AttendanceModel(models.Model):
     studentid=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=False,default=datetime.datetime.now())
